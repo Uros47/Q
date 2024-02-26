@@ -38,6 +38,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
 
       const data = await posts.json();
       console.log(data, "posts data from context");
+      setPosts(data);
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
     }
