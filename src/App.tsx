@@ -9,13 +9,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Route for the Posts list */}
         <Route path="/posts" element={<Posts />} />
-
-        {/* Route for individual Post details */}
         <Route path="/post/:postId" element={<PostDetails />} />
-
-        {/* Redirect to the Posts list if no route matches */}
         <Route path="/" element={<Posts />} />
       </Routes>
     </Router>
