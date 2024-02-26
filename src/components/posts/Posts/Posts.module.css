@@ -2,6 +2,11 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  cursor: pointer;
+}
+
+.postItem:hover {
+  background-color: lightblue;
 }
 
 .postList {
