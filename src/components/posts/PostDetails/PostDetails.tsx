@@ -11,7 +11,7 @@ const PostDetails = () => {
     if (postId) {
       fetchPostById(postId);
     }
-  }, []);
+  }, [fetchPostById, postId]);
 
   return (
     <div className={styles.postDetailsWrapper}>

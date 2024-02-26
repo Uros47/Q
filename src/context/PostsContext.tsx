@@ -30,7 +30,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
 
   const fetchPosts = async () => {
     try {
-      const searchParams = ``;
+      const searchParams = searchData ? `?userId=${searchData}` : ``;
 
       const posts = await fetch(
         `${process.env.REACT_APP_API}/posts` + searchParams,
@@ -40,7 +40,6 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
       );
 
       const data = await posts.json();
-      console.log(data, "posts data from context");
       setPosts(data);
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
@@ -54,7 +53,6 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
       });
       const data = await post.json();
       setPost(data);
-      console.log(data, "post data from context");
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
     }

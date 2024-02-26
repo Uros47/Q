@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./Posts.module.css";
 import Search from "../../Search/Search";
 import usePostsContext from "../../../context/PostsContext";
@@ -6,15 +6,14 @@ import { useNavigate } from "react-router-dom";
 import PrintComponentsName from "../../PrintComponentsName";
 
 const Posts = () => {
-  const [searchData, setSearchData] = useState<any>(null);
   const navigate = useNavigate();
 
-  const { fetchPosts, posts } = usePostsContext();
+  const { fetchPosts, posts, searchData, setSearchData } = usePostsContext();
 
   useEffect(() => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [searchData]);
 
   const goToSelectedPost = (id: string) => {
     navigate(`/post/${id}`);
