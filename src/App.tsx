@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
 
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Posts from "./posts/Posts/Posts";
+import PostDetails from "./posts/PostDetails/PostDetails";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Route for the Posts list */}
+        <Route path="/posts" element={<Posts />} />
+
+        {/* Route for individual Post details */}
+        <Route path="/post/:id" element={<PostDetails />} />
+
+        {/* Redirect to the Posts list if no route matches */}
+        <Route path="/" element={<Posts />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
