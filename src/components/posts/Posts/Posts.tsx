@@ -3,6 +3,7 @@ import styles from "./Posts.module.css";
 import Search from "../../Search/Search";
 import usePostsContext from "../../../context/PostsContext";
 import { useNavigate } from "react-router-dom";
+import PrintComponentsName from "../../PrintComponentsName";
 
 const Posts = () => {
   const [searchData, setSearchData] = useState<any>(null);
@@ -40,4 +41,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default PrintComponentsName(Posts, "Posts Component");

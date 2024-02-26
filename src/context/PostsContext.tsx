@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState } from "react";
 
 interface PostsContextInterface {
   posts: any;
+  post: any;
+  setPost: (post: any) => void;
   setPosts: (post: any) => void;
   searchData: string;
   setSearchData: (searchData: string) => void;
@@ -23,6 +25,7 @@ export default function usePostsContext() {
 
 export const PostsContextProvider = ({ children }: PostsContextProps) => {
   const [posts, setPosts] = useState<[]>([]);
+  const [post, setPost] = useState<{}>({});
   const [searchData, setSearchData] = useState<any>();
 
   const fetchPosts = async () => {
@@ -50,6 +53,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
         method: "GET",
       });
       const data = await post.json();
+      setPost(data);
       console.log(data, "post data from context");
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
@@ -61,6 +65,8 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
       value={{
         fetchPosts,
         posts,
+        post,
+        setPost,
         fetchPostById,
         setPosts,
         searchData,
