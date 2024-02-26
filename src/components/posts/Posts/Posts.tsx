@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
 import Search from "../../Search/Search";
+import usePostsContext from "../../../context/PostsContext";
 
 const mockPosts = [
   { id: 1, userId: 1, title: "Post 1", body: "Body of post 1" },
@@ -8,19 +9,14 @@ const mockPosts = [
 ];
 
 const Posts = () => {
-  const [searchData, setSearchData] = useState<string | null>(null);
+  const [searchData, setSearchData] = useState<any>(null);
   const [filteredPosts, setFilteredPosts] = useState(mockPosts);
 
+  const { fetchPosts } = usePostsContext();
+
   useEffect(() => {
-    if (searchData) {
-      const filtered = mockPosts.filter((post) =>
-        post.title.toLowerCase().includes(searchData.toLowerCase())
-      );
-      setFilteredPosts(filtered);
-    } else {
-      setFilteredPosts(mockPosts);
-    }
-  }, [searchData]);
+    fetchPosts();
+  }, [fetchPosts]);
 
   return (
     <div className={styles.postsWrapper}>

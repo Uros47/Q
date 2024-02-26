@@ -17,7 +17,7 @@ interface PostsContextProps {
   children: React.ReactNode;
 }
 
-export default function useUsersContext() {
+export default function usePostsContext() {
   return useContext(PostsContext);
 }
 
