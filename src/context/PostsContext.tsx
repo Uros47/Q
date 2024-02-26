@@ -3,12 +3,14 @@ import React, { createContext, useContext, useState } from "react";
 interface PostsContextInterface {
   posts: any;
   post: any;
+  comments: any;
   setPost: (post: any) => void;
   setPosts: (post: any) => void;
   searchData: string;
   setSearchData: (searchData: string) => void;
   fetchPostById: (id: string) => void;
   fetchPosts: () => void;
+  fetchCommentsByPostId: (id: string) => void;
 }
 
 const PostsContext = createContext<PostsContextInterface>(
@@ -25,6 +27,7 @@ export default function usePostsContext() {
 
 export const PostsContextProvider = ({ children }: PostsContextProps) => {
   const [posts, setPosts] = useState<[]>([]);
+  const [comments, setComments] = useState<[]>([]);
   const [post, setPost] = useState<{}>({});
   const [searchData, setSearchData] = useState<any>();
 
@@ -58,6 +61,21 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
     }
   };
 
+  const fetchCommentsByPostId = async (id: string) => {
+    try {
+      const comments = await fetch(
+        `${process.env.REACT_APP_API}/posts/${id}/comments`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await comments.json();
+      setComments(data);
+    } catch (error: any) {
+      throw new Error("Error fetching data:", error);
+    }
+  };
+
   return (
     <PostsContext.Provider
       value={{
@@ -69,6 +87,8 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
         setPosts,
         searchData,
         setSearchData,
+        fetchCommentsByPostId,
+        comments,
       }}
     >
       {children}
