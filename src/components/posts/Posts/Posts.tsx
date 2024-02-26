@@ -25,16 +25,20 @@ const Posts = () => {
       <Search searchData={searchData} setSearchData={setSearchData} />
 
       <ul className={styles.postList}>
-        {posts?.map((post: any) => (
-          <li
-            key={post.id}
-            className={styles.postItem}
-            onClick={() => goToSelectedPost(post.id)}
-          >
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-          </li>
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post: any) => (
+            <li
+              key={post.id}
+              className={styles.postItem}
+              onClick={() => goToSelectedPost(post.id)}
+            >
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </li>
+          ))
+        ) : (
+          <span>No data to display</span>
+        )}
       </ul>
     </div>
   );

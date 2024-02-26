@@ -26,4 +26,4 @@ const PostDetails = () => {
     </div>
   );
 };
-export default PrintComponentsName(PostDetails, "PostDetails");
+export default PrintComponentsName(PostDetails, "PostDetails Component");
