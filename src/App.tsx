@@ -13,7 +13,7 @@ const App = () => {
         <Route path="/posts" element={<Posts />} />
 
         {/* Route for individual Post details */}
-        <Route path="/post/:id" element={<PostDetails />} />
+        <Route path="/post/:postId" element={<PostDetails />} />
 
         {/* Redirect to the Posts list if no route matches */}
         <Route path="/" element={<Posts />} />
