@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Posts.module.css";
-import Search from "../../components/Search/Search";
+import Search from "../../Search/Search";
 
 const mockPosts = [
   { id: 1, userId: 1, title: "Post 1", body: "Body of post 1" },

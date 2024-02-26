@@ -2,8 +2,8 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Posts from "./posts/Posts/Posts";
-import PostDetails from "./posts/PostDetails/PostDetails";
+import Posts from "./components/posts/Posts/Posts";
+import PostDetails from "./components/posts/PostDetails/PostDetails";
 
 const App = () => {
   return (
