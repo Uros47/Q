@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { CommentInterface, PostInterface } from "../Interfaces/Interfaces";
 
 interface PostsContextInterface {
   posts: any;
@@ -26,8 +27,8 @@ export default function usePostsContext() {
 }
 
 export const PostsContextProvider = ({ children }: PostsContextProps) => {
-  const [posts, setPosts] = useState<[]>([]);
-  const [comments, setComments] = useState<[]>([]);
+  const [posts, setPosts] = useState<PostInterface[]>([]);
+  const [comments, setComments] = useState<CommentInterface[]>([]);
   const [post, setPost] = useState<{}>({});
   const [searchData, setSearchData] = useState<any>();
 
@@ -42,7 +43,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
         }
       );
 
-      const data = await posts.json();
+      const data: PostInterface[] = await posts.json();
       setPosts(data);
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
@@ -54,7 +55,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
       const post = await fetch(`${process.env.REACT_APP_API}/posts/${id}`, {
         method: "GET",
       });
-      const data = await post.json();
+      const data: PostInterface = await post.json();
       setPost(data);
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
@@ -69,7 +70,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
           method: "GET",
         }
       );
-      const data = await comments.json();
+      const data: CommentInterface[] = await comments.json();
       setComments(data);
     } catch (error: any) {
       throw new Error("Error fetching data:", error);
