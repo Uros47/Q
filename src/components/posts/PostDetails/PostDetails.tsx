@@ -30,12 +30,14 @@ const PostDetails = () => {
       )}
 
       <h3>Comments</h3>
-      {comments.length > 0 && (
+      {comments?.length > 0 ? (
         <>
-          {comments.map((comment: any, index: any) => (
+          {comments.map((comment, index) => (
             <CommentCard data={comment} key={index} />
           ))}
         </>
+      ) : (
+        <span>No Comments to display</span>
       )}
     </div>
   );

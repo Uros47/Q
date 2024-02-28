@@ -1,8 +1,13 @@
 import React from "react";
 import styles from "./CommentInfo.module.css";
 import PrintComponentsName from "../PrintComponentsName";
+import { CommentInterface } from "../../Interfaces/Interfaces";
 
-const CommentCard = ({ data }: any) => {
+interface CommentCardProps {
+  data: CommentInterface;
+}
+
+const CommentCard = ({ data }: CommentCardProps) => {
   return (
     <div className={styles.commentsWrapper}>
       <div key={data.id} className={styles.commentWrapper}>

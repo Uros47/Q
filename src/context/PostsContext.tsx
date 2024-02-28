@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState } from "react";
 import { CommentInterface, PostInterface } from "../Interfaces/Interfaces";
 
 interface PostsContextInterface {
-  posts: any;
-  post: any;
-  comments: any;
-  setPost: (post: any) => void;
-  setPosts: (post: any) => void;
+  posts: PostInterface[];
+  post: PostInterface;
+  comments: CommentInterface[];
+  setPost: (post: PostInterface) => void;
+  setPosts: (post: PostInterface[]) => void;
   searchData: string;
   setSearchData: (searchData: string) => void;
   fetchPostById: (id: string) => void;
@@ -29,7 +29,7 @@ export default function usePostsContext() {
 export const PostsContextProvider = ({ children }: PostsContextProps) => {
   const [posts, setPosts] = useState<PostInterface[]>([]);
   const [comments, setComments] = useState<CommentInterface[]>([]);
-  const [post, setPost] = useState<{}>({});
+  const [post, setPost] = useState<PostInterface>({});
   const [searchData, setSearchData] = useState<any>();
 
   const fetchPosts = async () => {
