@@ -12,6 +12,7 @@ interface PostsContextInterface {
   fetchPostById: (id: string) => void;
   fetchPosts: () => void;
   fetchCommentsByPostId: (id: string) => void;
+  fetchDataFromMultipleEndpoints: () => void;
 }
 
 const PostsContext = createContext<PostsContextInterface>(
@@ -31,6 +32,38 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
   const [comments, setComments] = useState<CommentInterface[]>([]);
   const [post, setPost] = useState<PostInterface>({});
   const [searchData, setSearchData] = useState<any>();
+  // const [allData, setAllData] = useState();
+
+  // wip
+
+  const postsEndpoint = "posts";
+  const commentsEndpoint = "comments";
+  const usersEndpoint = "users";
+
+  const fetchData = async (url: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API}/${url}`);
+    return response.json();
+  };
+  const fetchDataFromMultipleEndpoints = async () => {
+    try {
+      const [postsData, commentsData, usersData] = await Promise.all([
+        fetchData(postsEndpoint),
+        fetchData(commentsEndpoint),
+        fetchData(usersEndpoint),
+      ]);
+      const allData = [];
+
+      allData.push(postsData);
+      allData.push(commentsData);
+      allData.push(usersData);
+      console.log(allData, "all data");
+      // setAllData(allData)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  // wip
 
   const fetchPosts = async () => {
     try {
@@ -89,6 +122,7 @@ export const PostsContextProvider = ({ children }: PostsContextProps) => {
         searchData,
         setSearchData,
         fetchCommentsByPostId,
+        fetchDataFromMultipleEndpoints,
         comments,
       }}
     >

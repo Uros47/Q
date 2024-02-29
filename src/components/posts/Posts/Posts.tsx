@@ -8,9 +8,16 @@ import PrintComponentsName from "../../PrintComponentsName";
 const Posts = () => {
   const navigate = useNavigate();
 
-  const { fetchPosts, posts, searchData, setSearchData } = usePostsContext();
+  const {
+    fetchPosts,
+    posts,
+    searchData,
+    setSearchData,
+    // fetchDataFromMultipleEndpoints,
+  } = usePostsContext();
 
   useEffect(() => {
+    // fetchDataFromMultipleEndpoints();
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchData]);

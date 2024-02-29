@@ -12,3 +12,5 @@ export interface CommentInterface {
   email: string;
   body: string;
 }
+
+export interface AllDataInterface {}
