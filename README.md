@@ -1,4 +1,4 @@
 rename env.copy to .env
 
-npm install
+npm install / 
 npm start
